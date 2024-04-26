@@ -1,4 +1,4 @@
-package ETicaret.Eticaret.Interface;
+package ETicaret.Eticaret;
 
 import ETicaret.Eticaret.Service.UrunService;
 import org.springframework.boot.SpringApplication;

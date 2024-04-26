@@ -1,3 +1,5 @@
+
+
 package ETicaret.Eticaret.Entity;
 
 import jakarta.persistence.*;
