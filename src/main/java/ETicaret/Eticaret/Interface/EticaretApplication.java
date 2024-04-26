@@ -1,4 +1,4 @@
-package ETicaret.Eticaret;
+package ETicaret.Eticaret.Interface;
 
 import ETicaret.Eticaret.Service.UrunService;
 import org.springframework.boot.SpringApplication;
@@ -13,14 +13,14 @@ public class EticaretApplication {
 		UrunService fun =context.getBean(UrunService.class);
 
 
-/*
+/* URUN FUN
         fun.UrunEkle("öylesine",21,32);
         fun.UrunSil(23);
         fun.urunGuncelle(29,"deneme",21,213);
 		fun.UrunSat(29,10);
 
 
- */
+ */ //URUN FUN
 		fun.UrunListele();
 
 
