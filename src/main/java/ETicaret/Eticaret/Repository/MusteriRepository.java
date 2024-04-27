@@ -1,16 +1,20 @@
 package ETicaret.Eticaret.Repository;
-import ETicaret.Eticaret.Entity.Urun;
 
+
+import ETicaret.Eticaret.Entity.Musteri;
+import ETicaret.Eticaret.Entity.Urun;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 @Repository
-public interface UrunRepository extends JpaRepository<Urun, Integer> {
-
-    List<Urun> findByFiyatBetween(double minFiyat, double maxFiyat);
+public interface MusteriRepository extends JpaRepository<Musteri,Integer> {
+     List<Musteri> findByAdSoyad(String adSoyad);
 
     void deleteById(Long id);
 
      Urun save(Urun urun);
+
+
 }

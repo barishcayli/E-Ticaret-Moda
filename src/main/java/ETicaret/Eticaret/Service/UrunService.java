@@ -29,6 +29,7 @@ public class UrunService {
 
 
     public void UrunSil(long urunId) {
+
         urunRepository.deleteById(urunId);
     }
 

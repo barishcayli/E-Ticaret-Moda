@@ -4,6 +4,8 @@ package ETicaret.Eticaret.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name= "siparis")
 public class Siparis {
@@ -20,28 +22,31 @@ public class Siparis {
     private int urunId;
 
     @Column(name="miktar")
-    private String miktar;
-
-    @Column(name="siparis_tarihi")
-    private String siparis_tarihi;
-
-    @Column(name="teslim_tarihi")
-    private String teslim_tarihi;
+    private int miktar;
 
     @Column(name="siparis_adresi")
     private String siparis_adresi;
 
+    @Column(name="siparis_tarihi")
+    private Date siparis_tarihi;
+
+    @Column(name="teslim_tarihi")
+    private Date teslim_tarihi;
 
 
 
 
-    public Siparis(int musteriId, int urunId, String miktar, String siparis_tarihi, String teslim_tarihi, String siparis_adresi) {
+
+
+    public Siparis(int musteriId, int urunId, int miktar, String siparis_adresi,Date siparis_tarihi, Date teslim_tarihi) {
+
         this.musteriId = musteriId;
         this.urunId = urunId;
         this.miktar = miktar;
+        this.siparis_adresi = siparis_adresi;
         this.siparis_tarihi = siparis_tarihi;
         this.teslim_tarihi = teslim_tarihi;
-        this.siparis_adresi = siparis_adresi;
+
 
 
     }
@@ -66,23 +71,23 @@ public class Siparis {
     public void setUrunId(int urunId) {
         this.urunId = urunId;
     }
-    public String getMiktar() {
+    public int getMiktar() {
         return miktar;
     }
-    public void setMiktar(String miktar) {
+    public void setMiktar(int miktar) {
         this.miktar = miktar;
 
     }
-    public String getSiparis_tarihi() {
+    public Date getSiparis_tarihi() {
         return siparis_tarihi;
     }
-    public void setSiparis_tarihi(String siparis_tarihi) {
+    public void setSiparis_tarihi(Date siparis_tarihi) {
         this.siparis_tarihi = siparis_tarihi;
     }
-    public String getTeslim_tarihi() {
+    public Date getTeslim_tarihi() {
         return teslim_tarihi;
     }
-    public void setTeslim_tarihi(String teslim_tarihi) {
+    public void setTeslim_tarihi(Date teslim_tarihi) {
         this.teslim_tarihi = teslim_tarihi;
     }
     public String getSiparis_adresi() {
