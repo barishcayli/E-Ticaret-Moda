@@ -1,5 +1,6 @@
 package ETicaret.Eticaret;
 
+import ETicaret.Eticaret.Service.SiparisService;
 import ETicaret.Eticaret.Service.UrunService;
 import ETicaret.Eticaret.Service.MusteriService;
 
@@ -14,7 +15,7 @@ public class EticaretApplication {
         ApplicationContext context = SpringApplication.run(EticaretApplication.class, args);
 		UrunService fun =context.getBean(UrunService.class);
         MusteriService funmusteri =context.getBean(MusteriService.class);
-
+        SiparisService funsiparis = context.getBean(SiparisService.class);
 
         /* URUN FUN
         fun.UrunEkle("öylesine",21,32);
@@ -35,6 +36,8 @@ public class EticaretApplication {
 
 
 */ //MUSTERI FUN
+
+        funsiparis.SiparisListele();
 
 
 
