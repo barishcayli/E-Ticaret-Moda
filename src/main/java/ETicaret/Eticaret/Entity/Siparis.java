@@ -3,7 +3,9 @@
 package ETicaret.Eticaret.Entity;
 
 import jakarta.persistence.*;
+import org.springframework.format.datetime.DateFormatter;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity
@@ -13,7 +15,7 @@ public class Siparis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "siparis_id")
-    private int id;
+    private long id;
 
     @Column(name="musteri_id")
     private int musteriId;
@@ -52,7 +54,7 @@ public class Siparis {
     }
     public Siparis() {}
 
-    public int getId() {
+    public long getId() {
 
         return id;
     }

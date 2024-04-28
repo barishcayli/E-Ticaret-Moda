@@ -36,9 +36,20 @@ public class EticaretApplication {
 
 
 */ //MUSTERI FUN
+        /*
+        funsiparis.SiparisEkle(7	,2,	5,
+                "Atatürk Bulvarı No:22, Alsancak, İzmir",
+                "12-11-2021","21-12-2021" );
 
+
+        funsiparis.SiparisSil(254);
+        funsiparis.AdresGuncelle(250,"mevlana mahallesi 742. sokak no 18 , Atakum, Samsun");
         funsiparis.SiparisListele();
 
+
+
+        */ //SIPARIS FUN
+       
 
 
 

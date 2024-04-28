@@ -2,9 +2,12 @@ package ETicaret.Eticaret.Service;
 
 import ETicaret.Eticaret.Entity.Siparis;
 import ETicaret.Eticaret.Repository.SiparisRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -15,15 +18,30 @@ public class SiparisService {
     @Autowired
     private SiparisRepository siparisRepository;
 
-    public void SiparisEkle(int musteri_id, int urun_id, int adet, String siparis_adresi, Date siparis_tarihi, Date teslim_tarihi) {
+    public void SiparisEkle(int musteri_id, int urun_id, int adet, String siparis_adresi, String siparis_tarihi, String teslim_tarihi) {
 
-        Siparis siparis = new Siparis(musteri_id,urun_id,adet,siparis_adresi,siparis_tarihi,teslim_tarihi);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        try {
+
+            Date dateSiparis = dateFormat.parse(siparis_tarihi);
+            Date dateTeslim = dateFormat.parse(teslim_tarihi);
+            System.out.println(dateTeslim.getTime());
+            Siparis siparis = new Siparis(musteri_id,urun_id,adet,siparis_adresi,dateSiparis,dateTeslim);
 
         siparisRepository.save(siparis);
         }
-        public void SiparisSil(long SiparisId){
+        catch (ParseException e) {
+            System.out.println("Hata: Tarih formatı uygun değil");
 
-        siparisRepository.findById(SiparisId);
+        }
+
+        }
+        @Transactional
+        public void SiparisSil(long SilSiparisId){
+
+        siparisRepository.deleteById(SilSiparisId);
     }
 
 
