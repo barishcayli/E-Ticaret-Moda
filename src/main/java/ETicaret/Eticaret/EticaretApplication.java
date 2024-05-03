@@ -1,9 +1,6 @@
 package ETicaret.Eticaret;
 
-import ETicaret.Eticaret.Service.SaticiService;
-import ETicaret.Eticaret.Service.SiparisService;
-import ETicaret.Eticaret.Service.UrunService;
-import ETicaret.Eticaret.Service.MusteriService;
+import ETicaret.Eticaret.Service.*;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +15,7 @@ public class EticaretApplication {
         MusteriService funmusteri =context.getBean(MusteriService.class);
         SiparisService funsiparis = context.getBean(SiparisService.class);
         SaticiService funsatici =context.getBean(SaticiService.class);
+        SaticiDegerlendirmeService funDegerlendirme = context.getBean(SaticiDegerlendirmeService.class);
 
         /* URUN FUN
         fun.UrunEkle("öylesine",21,32);
@@ -51,10 +49,15 @@ public class EticaretApplication {
 
 
         */ //SIPARIS FUN
-
+/*
         funsatici.SaticiListele();
 
-
+*/
+        /*
+        funDegerlendirme.saticiDegerlendirmeListele(2);
+*/
+        funDegerlendirme.SaticiOrtalaması(2);
+        funDegerlendirme.DegerlendirmeEkle(3,3,2);
 
 
 
