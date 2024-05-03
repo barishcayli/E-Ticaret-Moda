@@ -4,6 +4,7 @@ import ETicaret.Eticaret.Entity.Satici;
 import ETicaret.Eticaret.Entity.SaticiDegerlendirme;
 import ETicaret.Eticaret.Repository.SaticiDegerlendirmeRepository;
 import ETicaret.Eticaret.Repository.SaticiRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +56,10 @@ public class SaticiDegerlendirmeService {
             System.out.println("Değerlendirme Eklendi");
 
     }
-
+    @Transactional
+    public void DegerlendirmeSil(int degerlendirmeId){
+        saticiDegerlendirmeRepository.deleteById(degerlendirmeId);
+    }
 }
 
 
