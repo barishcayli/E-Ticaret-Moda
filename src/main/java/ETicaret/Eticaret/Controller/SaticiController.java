@@ -1,9 +1,8 @@
 package ETicaret.Eticaret.Controller;
 
-import ETicaret.Eticaret.Dtos.SaticiDegerlendirmeEkleDto;
 import ETicaret.Eticaret.Dtos.SaticiEkleDto;
 import ETicaret.Eticaret.Entity.Satici;
-import ETicaret.Eticaret.Service.SaticiService;
+import ETicaret.Eticaret.Service.abstracts.SaticiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

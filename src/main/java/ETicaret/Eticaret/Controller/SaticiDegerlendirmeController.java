@@ -1,12 +1,9 @@
 package ETicaret.Eticaret.Controller;
 
 import ETicaret.Eticaret.Dtos.SaticiDegerlendirmeEkleDto;
-import ETicaret.Eticaret.Entity.SaticiDegerlendirme;
-import ETicaret.Eticaret.Service.SaticiDegerlendirmeService;
+import ETicaret.Eticaret.Service.abstracts.SaticiDegerlendirmeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/satici-degerlendirme")

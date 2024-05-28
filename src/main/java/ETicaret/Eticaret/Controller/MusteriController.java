@@ -2,7 +2,7 @@ package ETicaret.Eticaret.Controller;
 
 import ETicaret.Eticaret.Dtos.MusteriEkleDto;
 import ETicaret.Eticaret.Entity.Musteri;
-import ETicaret.Eticaret.Service.MusteriService;
+import ETicaret.Eticaret.Service.abstracts.MusteriService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

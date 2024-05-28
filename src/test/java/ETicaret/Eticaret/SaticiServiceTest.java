@@ -3,7 +3,7 @@ package ETicaret.Eticaret;
 import ETicaret.Eticaret.Dtos.SaticiEkleDto;
 import ETicaret.Eticaret.Entity.Satici;
 import ETicaret.Eticaret.Repository.SaticiRepository;
-import ETicaret.Eticaret.Service.SaticiService;
+import ETicaret.Eticaret.Service.abstracts.SaticiService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

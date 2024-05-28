@@ -3,7 +3,7 @@ package ETicaret.Eticaret;
 import ETicaret.Eticaret.Dtos.SiparisEkleDto;
 import ETicaret.Eticaret.Entity.Siparis;
 import ETicaret.Eticaret.Repository.SiparisRepository;
-import ETicaret.Eticaret.Service.SiparisService;
+import ETicaret.Eticaret.Service.abstracts.SiparisService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

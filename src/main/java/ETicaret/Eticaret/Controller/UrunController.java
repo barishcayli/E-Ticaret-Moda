@@ -2,7 +2,8 @@ package ETicaret.Eticaret.Controller;
 
 import ETicaret.Eticaret.Dtos.UrunEkleDto;
 import ETicaret.Eticaret.Entity.Urun;
-import ETicaret.Eticaret.Service.UrunService;
+
+import ETicaret.Eticaret.Service.abstracts.UrunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

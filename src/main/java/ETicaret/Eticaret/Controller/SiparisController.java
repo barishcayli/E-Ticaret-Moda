@@ -2,7 +2,7 @@ package ETicaret.Eticaret.Controller;
 
 import ETicaret.Eticaret.Dtos.SiparisEkleDto;
 import ETicaret.Eticaret.Entity.Siparis;
-import ETicaret.Eticaret.Service.SiparisService;
+import ETicaret.Eticaret.Service.abstracts.SiparisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
