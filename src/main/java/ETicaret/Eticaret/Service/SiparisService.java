@@ -1,5 +1,6 @@
 package ETicaret.Eticaret.Service;
 
+import ETicaret.Eticaret.Dtos.SiparisEkleDto;
 import ETicaret.Eticaret.Entity.Siparis;
 import ETicaret.Eticaret.Repository.SiparisRepository;
 import jakarta.transaction.Transactional;
@@ -18,17 +19,17 @@ public class SiparisService {
     @Autowired
     private SiparisRepository siparisRepository;
 
-    public void SiparisEkle(int musteri_id, int urun_id, int adet, String siparis_adresi, String siparis_tarihi, String teslim_tarihi) {
+        public void siparisEkle(SiparisEkleDto dto) {
 
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
         try {
 
-            Date dateSiparis = dateFormat.parse(siparis_tarihi);
-            Date dateTeslim = dateFormat.parse(teslim_tarihi);
+            Date dateSiparis = dateFormat.parse(String.valueOf(dto.siparis_tarihi()));
+            Date dateTeslim = dateFormat.parse(String.valueOf(dto.teslim_tarihi()));
             System.out.println(dateTeslim.getTime());
-            Siparis siparis = new Siparis(musteri_id,urun_id,adet,siparis_adresi,dateSiparis,dateTeslim);
+            Siparis siparis = new Siparis(dto.musteriId(),dto.urunId(), dto.miktar(), dto.siparis_adresi(), dateSiparis,dateTeslim);
 
         siparisRepository.save(siparis);
         }
@@ -39,21 +40,22 @@ public class SiparisService {
 
         }
         @Transactional
-        public void SiparisSil(long SilSiparisId){
+        public void siparisSil(int SilSiparisId){
 
         siparisRepository.deleteById(SilSiparisId);
     }
 
 
-    public void SiparisListele(){
+    public List<Siparis> siparisListele(){
         List<Siparis> siparisList = siparisRepository.findAll();
         for (Siparis siparis : siparisList) {
             System.out.println(siparis.toString());
 
         }
+        return siparisList;
     }
 
-    public void AdresGuncelle(long SiparisId, String YeniAdres){
+    public void adresGuncelle(int SiparisId, String YeniAdres){
          Optional<Siparis> siparisOptional = siparisRepository.findById(SiparisId);
          if (siparisOptional.isPresent()) {
              Siparis siparis = siparisOptional.get();

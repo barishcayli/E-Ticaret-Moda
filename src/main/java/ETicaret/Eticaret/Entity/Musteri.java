@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.core.style.ToStringCreator;
 
 @Entity
-   @Table(name ="musteri")
-
-
+@Table(name ="musteri")
 public class Musteri {
 
        @Id

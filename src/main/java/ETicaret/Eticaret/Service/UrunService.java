@@ -1,5 +1,6 @@
 package ETicaret.Eticaret.Service;
 
+import ETicaret.Eticaret.Dtos.UrunEkleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +16,21 @@ public class UrunService {
     @Autowired
     private UrunRepository urunRepository;
 
-    public void UrunListele() {
+    public List<Urun> urunListele() {
         List<Urun> urunler = urunRepository.findAll();
         for (Urun urun : urunler) {
             System.out.println(urun);
         }
+        return urunler;
     }
 
-    public void UrunEkle(String urunAdi, int stokMiktari, double fiyat) {
-        Urun urun = new Urun(urunAdi, stokMiktari, fiyat);
+    public void urunEkle(UrunEkleDto dto) {
+        Urun urun = new Urun(dto.urunAdi(), dto.stokMiktari(), dto.fiyat());
         urunRepository.save(urun);
     }
 
 
-    public void UrunSil(long urunId) {
+    public void urunSil(int urunId) {
 
         urunRepository.deleteById(urunId);
     }
@@ -46,7 +48,7 @@ public class UrunService {
         }
     }
 
-    public void UrunSat(int urunId, int SatilanAdet) {
+    public void urunSat(int urunId, int SatilanAdet) {
         Optional<Urun> urunOptional = urunRepository.findById(urunId);
         if (urunOptional.isPresent()) {
             Urun urun = urunOptional.get();

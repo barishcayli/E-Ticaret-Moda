@@ -12,9 +12,5 @@ import java.util.List;
 public interface MusteriRepository extends JpaRepository<Musteri,Integer> {
      List<Musteri> findByAdSoyad(String adSoyad);
 
-    void deleteById(Long id);
-
-     Urun save(Urun urun);
-
 
 }

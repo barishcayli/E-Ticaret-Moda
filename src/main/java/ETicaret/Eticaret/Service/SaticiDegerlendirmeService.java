@@ -1,5 +1,6 @@
 package ETicaret.Eticaret.Service;
 
+import ETicaret.Eticaret.Dtos.SaticiDegerlendirmeEkleDto;
 import ETicaret.Eticaret.Entity.Satici;
 import ETicaret.Eticaret.Entity.SaticiDegerlendirme;
 import ETicaret.Eticaret.Repository.SaticiDegerlendirmeRepository;
@@ -31,7 +32,7 @@ public class SaticiDegerlendirmeService {
     }
 
 
-    public static void SaticiOrtalaması(int saticiId) {
+    public static void saticiOrtalamasi(int saticiId) {
        List<Integer> degerlendirmeler = saticiDegerlendirmeRepository.findBySaticiId(saticiId);
       if(!degerlendirmeler.isEmpty()) {
           double toplam=0;
@@ -50,14 +51,14 @@ public class SaticiDegerlendirmeService {
       }
     }
 
-    public void DegerlendirmeEkle(int degerlendirme, int saticiId, int musteriId) {
-            SaticiDegerlendirme Degerlendirme = new SaticiDegerlendirme(degerlendirme,saticiId,musteriId);
-            saticiDegerlendirmeRepository.save(Degerlendirme);
-            System.out.println("Değerlendirme Eklendi");
+    public void degerlendirmeEkle(SaticiDegerlendirmeEkleDto dto) {
+
+            saticiDegerlendirmeRepository.save(new SaticiDegerlendirme(dto.verilenPuan(),dto.saticiId(),dto.musteriId() ));
+
 
     }
     @Transactional
-    public void DegerlendirmeSil(int degerlendirmeId){
+    public void degerlendirmeSil(int degerlendirmeId){
         saticiDegerlendirmeRepository.deleteById(degerlendirmeId);
     }
 }

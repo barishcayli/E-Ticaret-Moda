@@ -49,7 +49,7 @@ public class SaticiDegerlendirme {
         return verilenPuan;
     }
 
-    public void setVerilenPuan(int saticiDegerlendirme) {
+    void setVerilenPuan(int saticiDegerlendirme) {
         this.verilenPuan = saticiDegerlendirme;
     }
 

@@ -11,12 +11,9 @@ import java.util.Optional;
 
 public interface SaticiRepository extends JpaRepository<Satici, Integer> {
 
-    Optional<Satici> findById(int id);
 
-     Satici save(Satici satici);
 
-    void delete(Satici satici);
-    List<Satici> findAll();
+
 
 
 }

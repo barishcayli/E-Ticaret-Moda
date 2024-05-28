@@ -9,10 +9,5 @@ import java.util.Optional;
 @Repository
 public interface SiparisRepository extends JpaRepository<Siparis, Integer> {
 
-    Optional<Siparis> findById(long SiparisId);
-
-    void deleteById(long SiparisId);
-
-    Siparis save(Siparis siparis);
 
 }

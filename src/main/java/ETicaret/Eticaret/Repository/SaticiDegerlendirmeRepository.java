@@ -16,8 +16,7 @@ public interface SaticiDegerlendirmeRepository extends JpaRepository<SaticiDeger
     @Query("SELECT s.verilenPuan FROM SaticiDegerlendirme s WHERE s.saticiId = :deger")
     List<Integer> findBySaticiId(int deger);
 
-    SaticiDegerlendirme save(SaticiDegerlendirme entity);
 
-    void deleteById(int id);
+
 
     }
