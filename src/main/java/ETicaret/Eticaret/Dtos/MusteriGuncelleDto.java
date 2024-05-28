@@ -2,8 +2,10 @@ package ETicaret.Eticaret.Dtos;
 
 import jakarta.validation.constraints.*;
 
+public record MusteriGuncelleDto(
 
-public record MusteriEkleDto(
+        @NotNull(message = "Musteri Id alanı boş olamaz")
+        long musteriId,
 
         @NotNull(message = "Kullanıcı ad soyad alanı boş olamaz")
         @NotEmpty(message = "Kullanıcı ad soyad alanı boş olamaz")

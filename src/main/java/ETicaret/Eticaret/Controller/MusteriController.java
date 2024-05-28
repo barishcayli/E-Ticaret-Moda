@@ -1,8 +1,11 @@
 package ETicaret.Eticaret.Controller;
 
 import ETicaret.Eticaret.Dtos.MusteriEkleDto;
+import ETicaret.Eticaret.Dtos.MusteriGuncelleDto;
 import ETicaret.Eticaret.Entity.Musteri;
 import ETicaret.Eticaret.Service.abstracts.MusteriService;
+import ETicaret.Eticaret.exceptions.NotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +28,7 @@ public class MusteriController {
     }
 
     @PostMapping("/ekle")
-    public void musteriEkle(@RequestBody MusteriEkleDto dto) {
+    public void musteriEkle(@Valid @RequestBody MusteriEkleDto dto) {
         musteriService.musteriEkle(dto);
     }
 
@@ -34,12 +37,8 @@ public class MusteriController {
         musteriService.musteriSil(musteriId);
     }
 
-    @PutMapping("/guncelle/{id}")
-    public void musteriGuncelle(@PathVariable("id") long musteriId,
-                                @RequestParam String adSoyad,
-                                @RequestParam String adres,
-                                @RequestParam String eposta,
-                                @RequestParam String sifre) {
-        musteriService.musteriGuncelle(musteriId, adSoyad, adres, eposta, sifre);
+    @PutMapping("/guncelle")
+    public void musteriGuncelle(@Valid @RequestBody  MusteriGuncelleDto dto) throws NotFoundException {
+        musteriService.musteriGuncelle(dto);
     }
 }

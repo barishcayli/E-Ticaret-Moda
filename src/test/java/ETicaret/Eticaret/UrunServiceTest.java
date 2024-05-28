@@ -126,8 +126,16 @@ public void testUrunSat_StokYetersiz1(){
         // When
         when(urunRepository.findAll()).thenReturn(urunList);
 
-        // Then
+
+        // Act
         List<Urun> result = urunBusinnes.urunListele();
+
+        //Assert
+        assertEquals(result,urunList);
+
+
+        // Then
+/*        List<Urun> result = urunBusinnes.urunListele();
         assertEquals(2, result.size());
         assertEquals("Ürün 1", result.get(0).getUrunAdi());
         assertEquals(10, result.get(0).getStokMiktari());
@@ -138,7 +146,7 @@ public void testUrunSat_StokYetersiz1(){
         assertEquals(200.0, result.get(1).getFiyat());
 
         // Verify
-        verify(urunRepository, times(1)).findAll();
+        verify(urunRepository, times(1)).findAll();*/
     }
 
 

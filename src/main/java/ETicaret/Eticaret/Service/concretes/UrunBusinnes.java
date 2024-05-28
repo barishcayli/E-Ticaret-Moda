@@ -22,9 +22,6 @@ public class UrunBusinnes implements UrunService {
     @Override
     public List<Urun> urunListele() {
         List<Urun> urunler = urunRepository.findAll();
-        for (Urun urun : urunler) {
-            System.out.println(urun);
-        }
         return urunler;
     }
 

@@ -1,11 +1,13 @@
 package ETicaret.Eticaret.Service.concretes;
 
 import ETicaret.Eticaret.Dtos.MusteriEkleDto;
+import ETicaret.Eticaret.Dtos.MusteriGuncelleDto;
 import ETicaret.Eticaret.Entity.Musteri;
 import ETicaret.Eticaret.Repository.MusteriRepository;
 
 import ETicaret.Eticaret.Service.abstracts.MusteriService;
 
+import ETicaret.Eticaret.exceptions.NotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -39,17 +41,23 @@ public class MusteriBusinnes implements MusteriService {
     }
 
     @Override
-    public void musteriGuncelle(long MusteriId, String YeniMusteriAdSoyad, String YeniMusteriAdres, String YeniMusteriEposta, String YeniMusteriSifre) {
-        Optional<Musteri> musteriOptional = musteriRepository.findById((int) MusteriId);
+    public void musteriGuncelle(MusteriGuncelleDto dto) throws NotFoundException {
+        Optional<Musteri> musteriOptional = musteriRepository.findById((int) dto.musteriId());
         if (musteriOptional.isPresent()) {
             Musteri musteri = musteriOptional.get();
-            musteri.setAdSoyad(YeniMusteriAdSoyad);
-            musteri.setAdres(YeniMusteriAdres);
-            musteri.setEposta(YeniMusteriEposta);
-            musteri.setSifre(YeniMusteriSifre);
+            musteri.setAdSoyad(dto.adSoyad());
+            musteri.setAdres(dto.adres());
+            musteri.setEposta(dto.eposta());
+            musteri.setSifre(dto.sifre());
             musteriRepository.save(musteri);
         } else {
-            System.out.println("Hata: Müşteri bulunamadı.");
+           throw new NotFoundException("Hata: Müşteri bulunamadı.");
         }
     }
+
+
+
+
+
+    // SOLID : O OPEN CLOSED
 }

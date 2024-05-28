@@ -1,7 +1,9 @@
 package ETicaret.Eticaret.Service.abstracts;
 
 import ETicaret.Eticaret.Dtos.MusteriEkleDto;
+import ETicaret.Eticaret.Dtos.MusteriGuncelleDto;
 import ETicaret.Eticaret.Entity.Musteri;
+import ETicaret.Eticaret.exceptions.NotFoundException;
 
 import java.util.List;
 
@@ -13,5 +15,5 @@ public interface  MusteriService {
 
     void musteriSil(int MusteriId);
 
-    void musteriGuncelle(long MusteriId, String YeniMusteriAdSoyad, String YeniMusteriAdres, String YeniMusteriEposta, String YeniMusteriSifre);
+    void musteriGuncelle(MusteriGuncelleDto dto) throws NotFoundException;
 }

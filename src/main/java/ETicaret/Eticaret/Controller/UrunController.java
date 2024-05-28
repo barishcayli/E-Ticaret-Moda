@@ -36,8 +36,8 @@ public class UrunController {
         urunService.urunSil(urunId);
     }
 
-    @PutMapping("/guncelle/{urunId}")
-    public void urunGuncelle(@PathVariable int urunId,
+    @PutMapping("/guncelle")
+    public void urunGuncelle(@RequestParam int urunId,
                              @RequestParam String yeniAd,
                              @RequestParam int yeniStokMiktari,
                              @RequestParam double yeniFiyat) {
