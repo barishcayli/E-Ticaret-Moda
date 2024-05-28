@@ -69,5 +69,14 @@ public class UrunService {
             System.out.println("Hata: Belirtilen ID'ye sahip ürün bulunamadı.");
         }
     }
+    public void urunStokGoster(int urunId) {
+        Optional<Urun> urunOptional = urunRepository.findById(urunId);
+        if (urunOptional.isPresent()) {
+            Urun urun = urunOptional.get();
+            System.out.println("Ürün Adı: " + urun.getUrunAdi() + ", Stok Miktarı: " + urun.getStokMiktari());
+        } else {
+            System.out.println("Hata: Belirtilen ID'ye sahip ürün bulunamadı.");
+        }
+    }
 
 }
