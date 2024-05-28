@@ -4,6 +4,7 @@ import ETicaret.Eticaret.Dtos.MusteriEkleDto;
 import ETicaret.Eticaret.Entity.Musteri;
 import ETicaret.Eticaret.Repository.MusteriRepository;
 import ETicaret.Eticaret.Service.abstracts.MusteriService;
+import ETicaret.Eticaret.Service.concretes.MusteriBusinnes;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,7 +25,7 @@ public class MusteriServiceTest {
     private MusteriRepository musteriRepository;
 
     @InjectMocks
-    private MusteriService musteriService;
+    private MusteriBusinnes musteriService;
 
     @Test
     void testMusteriListele() {

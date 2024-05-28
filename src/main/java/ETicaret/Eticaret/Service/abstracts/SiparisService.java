@@ -5,13 +5,13 @@ import ETicaret.Eticaret.Entity.Siparis;
 
 import java.util.List;
 
-public abstract class SiparisService {
+public interface SiparisService {
 
-    public abstract void siparisEkle(SiparisEkleDto dto);
+     void siparisEkle(SiparisEkleDto dto);
 
-    public abstract void siparisSil(int SilSiparisId);
+     void siparisSil(int SilSiparisId);
 
-    public abstract List<Siparis> siparisListele();
+     List<Siparis> siparisListele();
 
-    public abstract void adresGuncelle(int SiparisId, String YeniAdres);
+     void adresGuncelle(int SiparisId, String YeniAdres);
 }

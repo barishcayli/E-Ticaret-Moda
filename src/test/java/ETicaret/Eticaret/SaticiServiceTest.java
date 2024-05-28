@@ -4,6 +4,7 @@ import ETicaret.Eticaret.Dtos.SaticiEkleDto;
 import ETicaret.Eticaret.Entity.Satici;
 import ETicaret.Eticaret.Repository.SaticiRepository;
 import ETicaret.Eticaret.Service.abstracts.SaticiService;
+import ETicaret.Eticaret.Service.concretes.SaticiBusinnes;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,7 +25,7 @@ class SaticiServiceTest {
     private SaticiRepository saticiRepository;
 
     @InjectMocks
-    private SaticiService saticiService;
+    private SaticiBusinnes saticiService;
 
     @Test
     void testSaticiListele() {

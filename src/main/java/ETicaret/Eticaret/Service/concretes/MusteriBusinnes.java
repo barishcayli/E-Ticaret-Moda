@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MusteriBusinnes extends MusteriService {
+public class MusteriBusinnes implements MusteriService {
 
     private final MusteriRepository musteriRepository;
 

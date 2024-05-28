@@ -6,15 +6,18 @@ import ETicaret.Eticaret.Entity.Urun;
 import ETicaret.Eticaret.Service.abstracts.UrunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UrunBusinnes extends UrunService {
+public class UrunBusinnes implements UrunService {
 
-    @Autowired
-    private UrunRepository urunRepository;
+
+    private final UrunRepository urunRepository;
+
+    public UrunBusinnes(UrunRepository urunRepository) {
+        this.urunRepository = urunRepository;
+    }
 
     @Override
     public List<Urun> urunListele() {
@@ -24,6 +27,7 @@ public class UrunBusinnes extends UrunService {
         }
         return urunler;
     }
+
 
     @Override
     public void urunEkle(UrunEkleDto dto) {
@@ -49,6 +53,8 @@ public class UrunBusinnes extends UrunService {
             System.out.println("Hata: Belirtilen ID'ye sahip ürün bulunamadı.");
         }
     }
+    // Exception : İstisna yönetimi
+    // Error
 
     @Override
     public void urunSat(int urunId, int satilanAdet) {
@@ -59,7 +65,8 @@ public class UrunBusinnes extends UrunService {
             if (yeniStokMiktari == 0) {
                 urunRepository.deleteById(urunId);
             } else if (yeniStokMiktari < 0) {
-                System.out.println("Hata: Stoğumuzda bu kadar ürün yok malesef");
+                throw new RuntimeException("Hata: Stoğumuzda bu kadar ürün yok malesef");
+
             } else {
                 urun.setStokMiktari(yeniStokMiktari);
                 urunRepository.save(urun);
@@ -69,15 +76,7 @@ public class UrunBusinnes extends UrunService {
         }
     }
 
-    @Override
-    public String urunStokGoster(int urunId) {
-        Optional<Urun> urunOptional = urunRepository.findById(urunId);
-        if (urunOptional.isPresent()) {
-            Urun urun = urunOptional.get();
-            return("Ürün Adı: " + urun.getUrunAdi() + ", Stok Miktarı: " + urun.getStokMiktari());
-        } else {
-            return ("Hata: Belirtilen ID'ye sahip ürün bulunamadı.");
-        }
 
-    }
+
+
 }

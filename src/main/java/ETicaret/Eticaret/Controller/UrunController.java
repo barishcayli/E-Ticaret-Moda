@@ -49,4 +49,6 @@ public class UrunController {
                         @RequestParam int satilanAdet) {
         urunService.urunSat(urunId, satilanAdet);
     }
+
+
 }

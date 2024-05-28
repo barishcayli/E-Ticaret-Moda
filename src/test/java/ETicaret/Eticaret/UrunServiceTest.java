@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -88,44 +90,56 @@ public class UrunServiceTest {
         assertEquals(5, urun.getStokMiktari());
         verify(urunRepository, times(1)).save(any(Urun.class));
     }
-
     @Test
-    public void testUrunSat_StokYetersiz() {
+     public void testUrunSat_StokYetersiz() {
         int urunId = 1;
-        int satilanAdet = 15;
+        int satilanAdet = 50;
 
         Urun urun = new Urun("Test Urun", 10, 100.0);
         Optional<Urun> optionalUrun = Optional.of(urun);
 
         when(urunRepository.findById(urunId)).thenReturn(optionalUrun);
+        assertThrows(RuntimeException.class , ()->{
+           urunBusinnes.urunSat(urunId,satilanAdet);
+        });
+    }
+@Test
+public void testUrunSat_StokYetersiz1(){
+          int urunId = 1;
+          int satilanAdet = 50;
+}
+  @Test
+    public void testUrunListele() {
+        // Given
+        Urun urun1 = new Urun();
+        urun1.setUrunAdi("Ürün 1");
+        urun1.setStokMiktari(10);
+        urun1.setFiyat(100.0);
 
-        urunBusinnes.urunSat(urunId, satilanAdet);
+        Urun urun2 = new Urun();
+        urun2.setUrunAdi("Ürün 2");
+        urun2.setStokMiktari(20);
+        urun2.setFiyat(200.0);
 
-        assertEquals(10, urun.getStokMiktari()); // Stoğun değişmemesi gerekiyor
-        verify(urunRepository, never()).save(any(Urun.class)); // save metodunun çağrılmaması gerekiyor
+        List<Urun> urunList = Arrays.asList(urun1, urun2);
+
+        // When
+        when(urunRepository.findAll()).thenReturn(urunList);
+
+        // Then
+        List<Urun> result = urunBusinnes.urunListele();
+        assertEquals(2, result.size());
+        assertEquals("Ürün 1", result.get(0).getUrunAdi());
+        assertEquals(10, result.get(0).getStokMiktari());
+        assertEquals(100.0, result.get(0).getFiyat());
+
+        assertEquals("Ürün 2", result.get(1).getUrunAdi());
+        assertEquals(20, result.get(1).getStokMiktari());
+        assertEquals(200.0, result.get(1).getFiyat());
+
+        // Verify
+        verify(urunRepository, times(1)).findAll();
     }
 
-    @Test
-    public void testUrunStokGoster_UrunVar() {
-        int urunId = 1;
-        Urun urun = new Urun("Test Urun", 10, 100.0);
-        Optional<Urun> optionalUrun = Optional.of(urun);
 
-        when(urunRepository.findById(urunId)).thenReturn(optionalUrun);
-
-        String result = urunBusinnes.urunStokGoster(urunId);
-
-        assertTrue(result.contains("Ürün Adı: Test Urun, Stok Miktarı: 10"));
-    }
-
-    @Test
-    public void testUrunStokGoster_UrunYok() {
-        int urunId = 2;
-
-        when(urunRepository.findById(urunId)).thenReturn(Optional.empty());
-
-        String result = urunBusinnes.urunStokGoster(urunId);
-
-        assertEquals("Hata: Belirtilen ID'ye sahip ürün bulunamadı.", result);
-    }
 }

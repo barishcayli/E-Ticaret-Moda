@@ -5,13 +5,13 @@ import ETicaret.Eticaret.Entity.Satici;
 
 import java.util.List;
 
-public abstract class SaticiService {
+public interface SaticiService {
 
-    public abstract List<Satici> saticiListele();
+    List<Satici> saticiListele();
 
-    public abstract void saticiEkle(SaticiEkleDto dto);
+     void saticiEkle(SaticiEkleDto dto);
 
-    public abstract void saticiSil(int id);
+     void saticiSil(int id);
 
-    public abstract void saticiGuncelle(Integer id, String ad_soyad, String marka, String eposta, String sifre);
+     void saticiGuncelle(Integer id, String ad_soyad, String marka, String eposta, String sifre);
 }

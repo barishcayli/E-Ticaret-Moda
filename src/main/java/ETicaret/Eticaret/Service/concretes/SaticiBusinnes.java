@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SaticiBusinnes extends SaticiService {
+public class SaticiBusinnes implements SaticiService {
 
     private final SaticiRepository saticiRepository;
 

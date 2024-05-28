@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SiparisBusinnes extends SiparisService {
+public class SiparisBusinnes implements  SiparisService {
 
     @Autowired
     private SiparisRepository siparisRepository;

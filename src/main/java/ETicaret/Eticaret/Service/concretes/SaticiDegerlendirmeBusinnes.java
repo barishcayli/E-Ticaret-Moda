@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SaticiDegerlendirmeBusinnes extends SaticiDegerlendirmeService {
+public class SaticiDegerlendirmeBusinnes implements SaticiDegerlendirmeService {
 
     private final SaticiDegerlendirmeRepository saticiDegerlendirmeRepository;
 
@@ -57,4 +57,5 @@ public class SaticiDegerlendirmeBusinnes extends SaticiDegerlendirmeService {
     public void degerlendirmeSil(int degerlendirmeId) {
         saticiDegerlendirmeRepository.deleteById(degerlendirmeId);
     }
+
 }
