@@ -103,14 +103,9 @@ public class UrunServiceTest {
            urunBusinnes.urunSat(urunId,satilanAdet);
         });
     }
-@Test
-public void testUrunSat_StokYetersiz1(){
-          int urunId = 1;
-          int satilanAdet = 50;
-}
+
   @Test
     public void testUrunListele() {
-        // Given
         Urun urun1 = new Urun();
         urun1.setUrunAdi("Ürün 1");
         urun1.setStokMiktari(10);
@@ -123,14 +118,12 @@ public void testUrunSat_StokYetersiz1(){
 
         List<Urun> urunList = Arrays.asList(urun1, urun2);
 
-        // When
         when(urunRepository.findAll()).thenReturn(urunList);
 
 
-        // Act
         List<Urun> result = urunBusinnes.urunListele();
 
-        //Assert
+
         assertEquals(result,urunList);
 
 

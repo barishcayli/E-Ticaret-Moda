@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/satici")
+@RequestMapping("/satici")
 public class SaticiController {
 
     private final SaticiService saticiService;
@@ -20,26 +20,22 @@ public class SaticiController {
     }
 
     @GetMapping("/listele")
-    public List<Satici> saticilariListele() {
+    public List<Satici> listele() {
         return saticiService.saticiListele();
     }
 
     @PostMapping("/ekle")
-    public void saticiEkle(@RequestBody SaticiEkleDto dto) {
+    public void ekle(@RequestBody SaticiEkleDto dto) {
         saticiService.saticiEkle(dto);
     }
 
     @DeleteMapping("/sil/{id}")
-    public void saticiSil(@PathVariable int id) {
+    public void sil(@PathVariable int id) {
         saticiService.saticiSil(id);
     }
 
     @PutMapping("/guncelle/{id}")
-    public void saticiGuncelle(@PathVariable int id,
-                               @RequestParam String adSoyad,
-                               @RequestParam String marka,
-                               @RequestParam String eposta,
-                               @RequestParam String sifre) {
-        saticiService.saticiGuncelle(id, adSoyad, marka, eposta, sifre);
+    public void guncelle(@PathVariable Integer id, @RequestBody SaticiEkleDto dto) {
+        saticiService.saticiGuncelle(id, dto.getAdSoyad(), dto.getMarkaAdi(), dto.getEposta(), dto.getSifre());
     }
 }

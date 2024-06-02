@@ -1,88 +1,94 @@
 package ETicaret.Eticaret;
 
+import ETicaret.Eticaret.Adapter.SaticiServiceAdapter;
 import ETicaret.Eticaret.Dtos.SaticiEkleDto;
 import ETicaret.Eticaret.Entity.Satici;
-import ETicaret.Eticaret.Repository.SaticiRepository;
+import ETicaret.Eticaret.External.ExternalSaticiService;
 import ETicaret.Eticaret.Service.abstracts.SaticiService;
-import ETicaret.Eticaret.Service.concretes.SaticiBusinnes;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-class SaticiServiceTest {
+class SaticiServiceAdapterTest {
 
     @Mock
-    private SaticiRepository saticiRepository;
+    private ExternalSaticiService externalSellerService;
 
     @InjectMocks
-    private SaticiBusinnes saticiService;
+    private SaticiServiceAdapter saticiServiceAdapter;
 
-    @Test
-    void testSaticiListele() {
-        // Hazırlık
-        List<Satici> saticiList = new ArrayList<>();
-        saticiList.add(new Satici("Ahmet Yılmaz", "Marka A", "ahmet@example.com", "123456"));
-        saticiList.add(new Satici("Ayşe Kaya", "Marka B", "ayse@example.com", "654321"));
-        when(saticiRepository.findAll()).thenReturn(saticiList);
-
-        // Test
-        List<Satici> returnedList = saticiService.saticiListele();
-
-        // Doğrulama
-        assertEquals(saticiList.size(), returnedList.size());
-        for (int i = 0; i < saticiList.size(); i++) {
-            assertEquals(saticiList.get(i), returnedList.get(i));
-        }
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void testSaticiEkle() {
-        // Hazırlık
-        SaticiEkleDto saticiDto = new SaticiEkleDto("Ali Veli", "Marka C", "ali@example.com", "password");
+    void saticiListele() {
+        // Arrange
+        Satici satici1 = new Satici("Ad Soyad 1", "Marka 1", "eposta1@example.com", "sifre1");
+        Satici satici2 = new Satici("Ad Soyad 2", "Marka 2", "eposta2@example.com", "sifre2");
+        List<Satici> saticiList = Arrays.asList(satici1, satici2);
+        when(externalSellerService.getAllSellers()).thenReturn(saticiList);
 
-        // Test
-        saticiService.saticiEkle(saticiDto);
+        // Act
+        List<Satici> result = saticiServiceAdapter.saticiListele();
 
-        // Doğrulama
-        verify(saticiRepository, times(1)).save(any(Satici.class));
+        // Assert
+        assertEquals(2, result.size());
+        assertEquals("Ad Soyad 1", result.get(0).getAd_soyad());
+        assertEquals("Ad Soyad 2", result.get(1).getAd_soyad());
     }
 
     @Test
-    void testSaticiSil() {
-        // Hazırlık
-        int saticiId = 1;
+    void saticiEkle() {
+        // Arrange
+        SaticiEkleDto dto = new SaticiEkleDto();
+        dto.setad_soyad("Ad Soyad");
+        dto.setmarka_adi("Marka Adı");
+        dto.setEposta("eposta@example.com");
+        dto.setSifre("sifre");
 
-        // Test
-        saticiService.saticiSil(saticiId);
+        // Act
+        saticiServiceAdapter.saticiEkle(dto);
 
-        // Doğrulama
-        verify(saticiRepository, times(1)).deleteById(saticiId);
+        // Assert
+        verify(externalSellerService, times(1)).addSeller(any(SaticiEkleDto.class));
     }
 
     @Test
-    void testSaticiGuncelle() {
-        // Hazırlık
-        Satici satici = new Satici("Ali Veli", "Marka C", "ali@example.com", "password");
-        Optional<Satici> saticiOptional = Optional.of(satici);
-        when(saticiRepository.findById(any(Integer.class))).thenReturn(saticiOptional);
+    void saticiSil() {
+        // Arrange
+        int id = 1;
 
-        // Test
-        saticiService.saticiGuncelle(1, "Mehmet Veli", "Marka D", "mehmet@example.com", "newpassword");
+        // Act
+        saticiServiceAdapter.saticiSil(id);
 
-        // Doğrulama
-        verify(saticiRepository, times(1)).findById(1);
-        verify(saticiRepository, times(1)).save(any(Satici.class));
+        // Assert
+        verify(externalSellerService, times(1)).removeSeller(id);
     }
 
-    // Diğer test metodları buraya eklenebilir
+    @Test
+    void saticiGuncelle() {
+        // Arrange
+        int id = 1;
+        String adSoyad = "Yeni Ad Soyad";
+        String markaAdi = "Yeni Marka Adı";
+        String eposta = "yeni_eposta@example.com";
+        String sifre = "yeni_sifre";
+
+        // Act
+        saticiServiceAdapter.saticiGuncelle(id, adSoyad, markaAdi, eposta, sifre);
+
+        // Assert
+        verify(externalSellerService, times(1)).updateSeller(id, adSoyad, markaAdi, eposta, sifre);
+    }
 }

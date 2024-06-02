@@ -1,7 +1,9 @@
+
 package ETicaret.Eticaret.Service.concretes;
 
 import ETicaret.Eticaret.Dtos.SaticiEkleDto;
 import ETicaret.Eticaret.Entity.Satici;
+import ETicaret.Eticaret.External.ExternalSaticiServiceImpl;
 import ETicaret.Eticaret.Repository.SaticiRepository;
 import ETicaret.Eticaret.Service.abstracts.SaticiService;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,12 @@ import java.util.List;
 public class SaticiBusinnes implements SaticiService {
 
     private final SaticiRepository saticiRepository;
+    private final ExternalSaticiServiceImpl externalSaticiServiceImpl;
 
 
-    public SaticiBusinnes(SaticiRepository saticiRepository) {
+    public SaticiBusinnes(SaticiRepository saticiRepository, ExternalSaticiServiceImpl externalSaticiServiceImpl) {
         this.saticiRepository = saticiRepository;
+        this.externalSaticiServiceImpl = externalSaticiServiceImpl;
     }
 
     @Override
@@ -23,9 +27,9 @@ public class SaticiBusinnes implements SaticiService {
         return saticiRepository.findAll();
     }
 
-    @Override
+      @Override
     public void saticiEkle(SaticiEkleDto dto) {
-        saticiRepository.save(new Satici(dto.ad_soyad(), dto.marka_adi(), dto.eposta(), dto.sifre()));
+        externalSaticiServiceImpl.addSeller(dto);
     }
 
     @Override

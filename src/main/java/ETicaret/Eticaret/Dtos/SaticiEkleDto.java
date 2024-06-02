@@ -1,20 +1,41 @@
 package ETicaret.Eticaret.Dtos;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+public class SaticiEkleDto {
+    private String adSoyad;
+    private String markaAdi;
+    private String eposta;
+    private String sifre;
 
-public record SaticiEkleDto (
+    // Getters and Setters
+    public String getAdSoyad() {
+        return adSoyad;
+    }
 
-        @NotNull(message = "Ad soyad boş olamaz")
-        String ad_soyad,
+    public void setad_soyad(String ad_soyad) {
+        this.adSoyad = ad_soyad;
+    }
 
-        @NotNull(message = "Marka adı boş olamaz")
-        String marka_adi,
+    public String getMarkaAdi() {
+        return markaAdi;
+    }
 
-        @Email(message = "E-posta boş olamaz")
-        String eposta,
+    public void setmarka_adi(String markaAdi) {
+        this.markaAdi = markaAdi;
+    }
 
-        @NotNull(message = "Şifre boş olamaz")
-        String sifre
-){
+    public String getEposta() {
+        return eposta;
+    }
+
+    public void setEposta(String eposta) {
+        this.eposta = eposta;
+    }
+
+    public String getSifre() {
+        return sifre;
+    }
+
+    public void setSifre(String sifre) {
+        this.sifre = sifre;
+    }
 }
