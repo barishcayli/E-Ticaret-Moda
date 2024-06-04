@@ -1,14 +1,19 @@
 package ETicaret.Eticaret.Dtos;
 
-public class SaticiEkleDto {
-
+public class SaticiGuncelleDto {
+    private int id;
     private String adSoyad;
     private String markaAdi;
     private String eposta;
     private String sifre;
 
 
-
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getAdSoyad() {
         return adSoyad;
     }
