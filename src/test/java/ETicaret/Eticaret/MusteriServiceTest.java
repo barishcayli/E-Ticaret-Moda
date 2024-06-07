@@ -4,7 +4,6 @@ import ETicaret.Eticaret.Dtos.MusteriEkleDto;
 import ETicaret.Eticaret.Dtos.MusteriGuncelleDto;
 import ETicaret.Eticaret.Entity.Musteri;
 import ETicaret.Eticaret.Repository.MusteriRepository;
-import ETicaret.Eticaret.Service.abstracts.MusteriService;
 import ETicaret.Eticaret.Service.concretes.MusteriBusinnes;
 import ETicaret.Eticaret.exceptions.NotFoundException;
 import org.junit.jupiter.api.Test;

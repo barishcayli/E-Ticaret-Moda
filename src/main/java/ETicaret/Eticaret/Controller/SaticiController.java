@@ -28,6 +28,7 @@ public class SaticiController {
         return saticiService.saticiListele();
     }
 
+
     @PostMapping("/ekle")
     public void ekle(@RequestBody SaticiEkleDto dto) {
         saticiService.saticiEkle(dto);

@@ -2,21 +2,24 @@ package ETicaret.Eticaret.Service.concretes;
 
 import ETicaret.Eticaret.Dtos.SaticiDegerlendirmeEkleDto;
 import ETicaret.Eticaret.Entity.SaticiDegerlendirme;
+import ETicaret.Eticaret.Observer.SaticiDegerlendirmeManager;
 import ETicaret.Eticaret.Repository.SaticiDegerlendirmeRepository;
 import ETicaret.Eticaret.Service.abstracts.SaticiDegerlendirmeService;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class SaticiDegerlendirmeBusinnes implements SaticiDegerlendirmeService {
-
     private final SaticiDegerlendirmeRepository saticiDegerlendirmeRepository;
+    private final SaticiDegerlendirmeManager saticiDegerlendirmeManager;
 
-
-    public SaticiDegerlendirmeBusinnes(SaticiDegerlendirmeRepository saticiDegerlendirmeRepository) {
+    @Autowired
+    public SaticiDegerlendirmeBusinnes(SaticiDegerlendirmeRepository saticiDegerlendirmeRepository, SaticiDegerlendirmeManager saticiDegerlendirmeManager) {
         this.saticiDegerlendirmeRepository = saticiDegerlendirmeRepository;
+        this.saticiDegerlendirmeManager = saticiDegerlendirmeManager;
     }
 
     @Override
@@ -49,7 +52,9 @@ public class SaticiDegerlendirmeBusinnes implements SaticiDegerlendirmeService {
 
     @Override
     public void degerlendirmeEkle(SaticiDegerlendirmeEkleDto dto) {
-        saticiDegerlendirmeRepository.save(new SaticiDegerlendirme(dto.verilenPuan(), dto.saticiId(), dto.musteriId()));
+        SaticiDegerlendirme yeniDegerlendirme = new SaticiDegerlendirme(dto.verilenPuan(), dto.saticiId(), dto.musteriId());
+        saticiDegerlendirmeRepository.save(yeniDegerlendirme);
+        saticiDegerlendirmeManager.notifyObservers(yeniDegerlendirme);
     }
 
     @Override
@@ -57,5 +62,4 @@ public class SaticiDegerlendirmeBusinnes implements SaticiDegerlendirmeService {
     public void degerlendirmeSil(int degerlendirmeId) {
         saticiDegerlendirmeRepository.deleteById(degerlendirmeId);
     }
-
 }
