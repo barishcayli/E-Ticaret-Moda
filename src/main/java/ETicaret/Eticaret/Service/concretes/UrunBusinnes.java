@@ -1,10 +1,10 @@
 package ETicaret.Eticaret.Service.concretes;
 
 import ETicaret.Eticaret.Dtos.UrunEkleDto;
+import ETicaret.Eticaret.Repository.MusteriRepository;
 import ETicaret.Eticaret.Repository.UrunRepository;
 import ETicaret.Eticaret.Entity.Urun;
 import ETicaret.Eticaret.Service.abstracts.UrunService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +15,7 @@ public class UrunBusinnes implements UrunService {
 
     private final UrunRepository urunRepository;
 
-    public UrunBusinnes(UrunRepository urunRepository) {
+    public UrunBusinnes(UrunRepository urunRepository, MusteriRepository musteriRepository) {
         this.urunRepository = urunRepository;
     }
 

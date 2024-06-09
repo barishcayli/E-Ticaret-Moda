@@ -2,7 +2,7 @@ package ETicaret.Eticaret.Service.concretes;
 
 import ETicaret.Eticaret.Dtos.SaticiDegerlendirmeEkleDto;
 import ETicaret.Eticaret.Entity.SaticiDegerlendirme;
-import ETicaret.Eticaret.Observer.SaticiDegerlendirmeManager;
+
 import ETicaret.Eticaret.Repository.SaticiDegerlendirmeRepository;
 import ETicaret.Eticaret.Service.abstracts.SaticiDegerlendirmeService;
 import jakarta.transaction.Transactional;
@@ -14,12 +14,12 @@ import java.util.List;
 @Service
 public class SaticiDegerlendirmeBusinnes implements SaticiDegerlendirmeService {
     private final SaticiDegerlendirmeRepository saticiDegerlendirmeRepository;
-    private final SaticiDegerlendirmeManager saticiDegerlendirmeManager;
+
 
     @Autowired
-    public SaticiDegerlendirmeBusinnes(SaticiDegerlendirmeRepository saticiDegerlendirmeRepository, SaticiDegerlendirmeManager saticiDegerlendirmeManager) {
+    public SaticiDegerlendirmeBusinnes(SaticiDegerlendirmeRepository saticiDegerlendirmeRepository) {
         this.saticiDegerlendirmeRepository = saticiDegerlendirmeRepository;
-        this.saticiDegerlendirmeManager = saticiDegerlendirmeManager;
+
     }
 
     @Override
@@ -54,8 +54,7 @@ public class SaticiDegerlendirmeBusinnes implements SaticiDegerlendirmeService {
     public void degerlendirmeEkle(SaticiDegerlendirmeEkleDto dto) {
         SaticiDegerlendirme yeniDegerlendirme = new SaticiDegerlendirme(dto.verilenPuan(), dto.saticiId(), dto.musteriId());
         saticiDegerlendirmeRepository.save(yeniDegerlendirme);
-        saticiDegerlendirmeManager.notifyObservers(yeniDegerlendirme);
-    }
+            }
 
     @Override
     @Transactional

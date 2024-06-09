@@ -1,11 +1,12 @@
 package ETicaret.Eticaret.Entity;
 
+import ETicaret.Eticaret.Observer.Observer;
 import jakarta.persistence.*;
 import org.springframework.core.style.ToStringCreator;
 
 @Entity
 @Table(name ="musteri")
-public class Musteri {
+public class Musteri implements Observer {
 
        @Id
        @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +32,13 @@ public class Musteri {
            this.sifre = sifre;
        }
        public Musteri() {}
+
+    @Override
+    public void update(String message) {
+        System.out.println("Sayın " + adSoyad + ", " + message);
+    }
+
+
 
     public int getId() {
            return id;
