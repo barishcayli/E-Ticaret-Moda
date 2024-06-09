@@ -49,9 +49,12 @@ public class Urun implements Subject {
     @Override
     public void notifyObservers(String message) {
         for (Observer observer : observers) {
-            observer.update(message);
+            observer.guncelleme(message);
         }
+        System.out.println("guncelleme mesajı gönderildi");
     }
+
+
 
 
     public int getId() {

@@ -34,9 +34,9 @@ public class Musteri implements Observer {
        public Musteri() {}
 
     @Override
-    public void update(String message) {
+    public void guncelleme(String message) {
         System.out.println("Sayın " + adSoyad + ", " + message);
-    }
+       }
 
 
 
