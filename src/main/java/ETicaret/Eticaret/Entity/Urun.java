@@ -84,7 +84,7 @@ public class Urun implements Subject {
 
     public void setFiyat(double fiyat) {
         this.fiyat = fiyat;
-        notifyObservers("Ürünümüz olan " + urunAdi + " fiyatı " + fiyat + "olarak değişmiştir");
+        notifyObservers("Ürünümüz olan " + urunAdi + " fiyatı " + fiyat + " olarak değişmiştir");
     }
 
     @Override

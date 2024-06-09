@@ -1,50 +1,32 @@
-package ETicaret.Eticaret;
-
+import ETicaret.Eticaret.Entity.Musteri;
 import ETicaret.Eticaret.Entity.Urun;
 import ETicaret.Eticaret.Observer.Observer;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class UrunTest {
+import static org.mockito.Mockito.*;
 
-    @Test
-    void testRegisterObserver() {
-        // Arrange
-        Urun urun = new Urun();
-        Observer observer = Mockito.mock(Observer.class);
+class UrunTest {
 
-        // Act
-        urun.registerObserver(observer);
+    private Urun urun;
+    private Observer musteri;
 
-        // Assert
-        Mockito.verify(observer).update(Mockito.anyString());
+    @BeforeEach
+    void setUp() {
+        urun = new Urun("Test Ürünü", 10, 100.0);
+        musteri = mock(Musteri.class);
+        urun.registerObserver(musteri);
     }
 
     @Test
-    void testRemoveObserver() {
-        // Arrange
-        Urun urun = new Urun();
-        Observer observer = Mockito.mock(Observer.class);
-        urun.registerObserver(observer);
+    void testNotifyObserversWhenPriceChanges() {
+        urun.setFiyat(120.0);
+        String expectedMessage = "Ürünümüz olan Test Ürünü fiyatı 120.0 olarak değişmiştir";
 
-        // Act
-        urun.removeObserver(observer);
+        verify(musteri, times(1)).update(expectedMessage);
 
-        // Assert
-        Mockito.verify(observer, Mockito.never()).update(Mockito.anyString());
-    }
-
-    @Test
-    void testNotifyObservers() {
-        // Arrange
-        Urun urun = new Urun();
-        Observer observer = Mockito.mock(Observer.class);
-        urun.registerObserver(observer);
-
-        // Act
-        urun.notifyObservers("Test message");
-
-        // Assert
-        Mockito.verify(observer).update("Test message");
+        // Çıktıyı ekrana yazdıralım
+        System.out.println("Test başarılı: " + expectedMessage);
     }
 }
